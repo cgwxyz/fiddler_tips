@@ -5,7 +5,7 @@ make powerful fiddler.
 ==hosts switcher
 
 *edit CustomRules.js, add
-    //hosts switcher--start
+    
     public static var  domain_list ={'www.cgwxyz.com':1};
 
     public static RulesOption("Localhost", "H&osts-Switcher") //add a menu under Rules
@@ -17,8 +17,6 @@ make powerful fiddler.
 
 * edit OnBeforeRequest function ,add:
     static function OnBeforeRequest(oSession: Session) {
-       //---------------
-
        if( b_is_local){ //localhost checked
             if(domain_list[oSession.host] == 1){
                     oSession.bypassGateway = true;                   // Prevent this request from going through an upstream proxy
