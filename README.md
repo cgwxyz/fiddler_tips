@@ -2,9 +2,9 @@
 make powerful fiddler.
 
 
-==hosts switcher
+## hosts switcher
 
-*edit CustomRules.js, add
+* edit CustomRules.js, add
     
     public static var  domain_list ={'www.cgwxyz.com':1};
 
@@ -15,9 +15,10 @@ make powerful fiddler.
     var b_is_test: boolean = false;
 
 
-* edit OnBeforeRequest function ,add:
+* edit OnBeforeRequest function ,add
+     
     static function OnBeforeRequest(oSession: Session) {
-       if( b_is_local){ //localhost checked
+        if( b_is_local){ //localhost checked
             if(domain_list[oSession.host] == 1){
                     oSession.bypassGateway = true;                   // Prevent this request from going through an upstream proxy
                     oSession["x-overrideHost"] = "127.0.0.1";  // DNS name or IP address of target server
