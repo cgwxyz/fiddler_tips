@@ -28,3 +28,24 @@
     	}
 
 * done.A menu "Hosts-Switcher" will displayed under Rules.
+
+
+### Task 2.Add Customize Column
+
+* edit **CustomRules.js**,add
+
+        public static BindUIColumn("HTTPMethod")
+        function CalcMethodCol(oS: Session){
+            if (null != oS.oRequest) return oS.oRequest.headers.HTTPMethod; else return String.Empty; 
+        }
+        
+        public static BindUIColumn("Time Taken")
+        function CalcTimingCol(oS: Session){
+            var sResult = String.Empty;
+            if ((oS.Timers.ServerDoneResponse > oS.Timers.ClientDoneRequest))
+            {
+                sResult = String.Format("{0:h:mm:ssss.ffff}", 
+                    (oS.Timers.ServerDoneResponse - oS.Timers.ClientDoneRequest));
+            }
+            return sResult;
+        }
